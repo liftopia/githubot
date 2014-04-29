@@ -50,6 +50,10 @@ class Github
           statusCode: res?.statusCode
           body: res?.body
           error: err
+          ref:
+            verb: verb
+            url: url
+            data: data
 
       try
         responseData = JSON.parse body if body
@@ -58,6 +62,10 @@ class Github
           statusCode: res.statusCode
           body: body
           error: "Could not parse response: #{body}"
+          ref:
+            verb: verb
+            url: url
+            data: data
 
       if (200 <= res.statusCode < 300)
         cb responseData
@@ -66,6 +74,10 @@ class Github
           statusCode: res.statusCode
           body: body
           error: responseData.message
+          ref:
+            verb: verb
+            url: url
+            data: data
 
   get: (url, data, cb) ->
     unless cb?
